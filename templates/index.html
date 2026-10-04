@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TripPlanner AI</title>
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+
+  <body>
+    <!-- Modern subtle grid & glow background -->
+    <div class="page-bg">
+      <div class="glow-orb"></div>
+      <div class="grid-pattern"></div>
+    </div>
+
+    <main class="app-container">
+      <section class="hero-section">
+        <div class="badge">
+          <span class="badge-dot"></span>
+          TripPlanner AI — LangGraph & HuggingFace
+        </div>
+        <h1>Plan your perfect trip</h1>
+        <p>
+          Search flights, discover hotels, and generate a complete travel
+          itinerary using an advanced multi-agent system.
+        </p>
+      </section>
+
+      <section class="planner-card">
+        <div class="card-header">
+          <h2>Where do you want to go?</h2>
+          <div class="status-pill">
+            <span class="status-dot"></span>
+            System Online
+          </div>
+        </div>
+
+        <div class="prompt-wrapper">
+          <textarea
+            id="userInput"
+            placeholder="e.g., Plan a complete 7 days Japan trip including flights, hotels and sightseeing under 2 lakhs..."
+          ></textarea>
+
+          <div class="prompt-footer">
+            <div class="quick-prompts">
+              <button
+                onclick="
+                  setPrompt(
+                    'Plan a complete 7 days Madrid trip from India including flights, hotels and sightseeing under 5 lakhs.',
+                  )
+                "
+              >
+                Madrid
+              </button>
+              <button
+                onclick="
+                  setPrompt(
+                    'Plan a 5 days Dubai trip from Delhi with flights, hotels and sightseeing.',
+                  )
+                "
+              >
+                Dubai
+              </button>
+              <button
+                onclick="
+                  setPrompt(
+                    'Plan a 7 days Thailand trip from India with budget hotels and sightseeing.',
+                  )
+                "
+              >
+                Thailand
+              </button>
+              <button onclick="setPrompt('Give me all country flight info.')">
+                Global Flights
+              </button>
+            </div>
+
+            <button id="sendBtn" onclick="sendMessage()">
+              <span id="btnText">Generate</span>
+              <span id="btnLoader" class="loader hidden"></span>
+              <svg
+                class="send-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section id="resultSection" class="result-section hidden">
+        <div class="result-header">
+          <div>
+            <h2>Travel Itinerary</h2>
+            <p id="threadInfo" class="thread-text">Thread ID: -</p>
+          </div>
+          <div class="result-actions">
+            <button class="action-btn copy-btn" onclick="copyResult()">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path
+                  d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+                ></path>
+              </svg>
+              Copy
+            </button>
+            <button class="action-btn download-btn" onclick="downloadPDF()">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+              PDF
+            </button>
+          </div>
+        </div>
+
+        <div id="pdfContent" class="pdf-content">
+          <h1 class="pdf-title">AI Travel Plan</h1>
+          <div id="resultBox" class="result-box"></div>
+        </div>
+      </section>
+
+      <section id="errorBox" class="error-box hidden"></section>
+    </main>
+
+    <footer>Powered by FastAPI, LangGraph, HuggingFace & Tavily</footer>
+
+    <!-- Markdown Renderer -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <!-- PDF Download Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <!-- Your Custom JS -->
+    <script src="/static/script.js"></script>
+  </body>
+</html>

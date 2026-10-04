@@ -33,7 +33,7 @@ User Query → Flight Agent → Hotel Agent → Itinerary Agent → Final Agent 
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/Shreshhthh/Multiagent--Trip-planner-AI.git
+git clone https://github.com/Shreshhthh/Multi-Agent--Trip-planner.git
 ```
 
 ### 2. Create Virtual Environment
